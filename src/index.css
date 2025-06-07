@@ -1,0 +1,15 @@
+@import "tailwindcss";
+
+@theme{
+  --color-primary   : #fdf5e9;
+  --color-text-gray : #70675e ;
+  --color-secondary : #e6742d ;
+  --color-third     : #d3a36c ;
+}
+
+@layer utilities{
+  .home-container{
+    @apply  bg-cover bg-center bg-no-repeat  px-4 py-16 flex flex-col space-y-8 rounded-md ;
+    background : linear-gradient(0deg, rgba(0, 0, 0, 0.46), rgba(0, 0, 0, 0.46)) , url('./assets//images/home-hero.png');
+  }
+}
