@@ -8,11 +8,11 @@ export default function NavBar(){
                 <h1 className="text-3xl font-bold uppercase cursor-pointer"><Link to={"/"}>#vanlife</Link></h1>
 
                 <ul className="flex gap-8 items-center capitalize text-text-gray text-lg">
-                    <li className="cursor-pointer focus:text-black">
+                    <li className="cursor-pointer hover:text-black hover:border-b-2 transition-all duration-300 ">
                        <Link to={"/about"}>about</Link>
                     </li>
-                    <li className="cursor-pointer">
-                      <Link>vans</Link>
+                    <li className="cursor-pointer hover:text-black hover:border-b-2 transition-all duration-300 ">
+                      <Link to={"/vans"}>vans</Link>
                     </li>
                 </ul>
             </div>

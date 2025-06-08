@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom'
 import img2 from '../assets/images/about-hero.png'
 
 export default function About(){
@@ -15,7 +16,9 @@ export default function About(){
                 <div className='rounded-lg p-8 justify-center bg-third'>
                      <h1 className='text-2xl font-bold'>Your Destination is waiting</h1>
                      <h1 className='text-2xl font-bold'>Your van is ready</h1>
-                     <button className='rounded-lg bg-black text-white px-4 py-2 cursor-pointer mt-8 capitalize'>explore our vans</button>
+                     <button className='rounded-lg bg-black text-white px-4 py-2 cursor-pointer mt-8 capitalize'>
+                      <Link to={"/vans"}>explore our vans</Link>
+                     </button>
                      
                 </div>
             </div>
