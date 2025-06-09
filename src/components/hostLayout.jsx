@@ -9,10 +9,13 @@ export default function Hostlayout(){
                     <Link to={"/host"}>dashboard</Link>
                 </li>
                 <li className="hover:text-black hover:border-b-2 hover:border-black cursor-pointer">
-                    <Link to={"/host/income"}>income</Link>
+                    <Link to={"income"}>income</Link>
                 </li>
                 <li className="hover:text-black hover:border-b-2 hover:border-black cursor-pointer">
-                    <Link to={"/host/review"}>review</Link>
+                    <Link to={"/host/vans"}>vans</Link>
+                </li>
+                <li className="hover:text-black hover:border-b-2 hover:border-black cursor-pointer">
+                    <Link to={"review"}>review</Link>
                 </li>
             </ul>
  
