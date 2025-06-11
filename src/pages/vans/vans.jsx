@@ -13,14 +13,15 @@ export default function Vans(){
       .then(data => setVans(data.vans))
       .catch(error => console.log('fetch data: ',error))
   },[])
+  console.log(searchParam.toString())
 
   const filteredVans = typeFilter ?
                        vans.filter(ele => ele.type.toLowerCase() === typeFilter)
                        : vans   
 
   const vansElements = filteredVans.map(ele => (
-       <Link to={`${ele.id}`}>
-          <div key={ele.id} className="w-72 overflow-hidden gap-2 hover:scale-105 transition-all duration-300 cursor-pointer">
+       <Link key={ele.id} to={`${ele.id}`} state={{search : `?${searchParam.toString()}` , type : typeFilter}}>
+          <div className="w-72 overflow-hidden gap-2 hover:scale-105 transition-all duration-300 cursor-pointer">
                <img src={ele.imageUrl} className="w-full h-72 rounded-lg" />
 
                <div>

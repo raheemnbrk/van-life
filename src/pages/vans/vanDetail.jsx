@@ -1,9 +1,11 @@
-import { useParams } from "react-router-dom"
+import { useParams , useLocation , Link } from "react-router-dom"
 import { useEffect , useState } from "react"
+import { FaArrowCircleLeft } from "react-icons/fa";
 
 export default function VanDetail(){
     const params = useParams()
-    console.log(params)
+    const location = useLocation()
+    console.log(location)
 
     const [van , setVan] = useState(null)
 
@@ -14,10 +16,18 @@ export default function VanDetail(){
            .catch(error => console.log('error fetching: ',error))
     },[params.id])
 
-    console.log(van)
+    const search = location.state?.search||""
+    const type = location.state?.type||"all"
+
     return(
         <>
-          <div className="p-4">
+          <div className="p-4 flex flex-col space-y-4 ">
+            <Link to={`..${search}`} relative="path" >
+              <div className="flex gap-2 text-text-gray items-center">
+                <FaArrowCircleLeft/>
+                <p>back to {type} vans</p>
+              </div>
+            </Link>
             {van ? (
                 <div className="bg-primary p-4 space-y-4">
                     <img src={van.imageUrl} className="w-[300px] rounded-lg" />
