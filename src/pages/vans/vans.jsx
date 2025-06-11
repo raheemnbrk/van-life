@@ -1,8 +1,11 @@
 import { useEffect , useState } from "react";
-import { Link } from "react-router-dom";
+import { Link , useSearchParams } from "react-router-dom";
 
-export default function vans(){
+export default function Vans(){
+  const [searchParam , setSearchParam] = useSearchParams()
   const [vans , setVans] = useState([])
+
+  const typeFilter = searchParam.get("type")
 
   useEffect(()=>{
     fetch("/api/vans")
@@ -11,8 +14,12 @@ export default function vans(){
       .catch(error => console.log('fetch data: ',error))
   },[])
 
-  const vansElements = vans.map(ele => (
-       <Link to={`/vans/${ele.id}`}>
+  const filteredVans = typeFilter ?
+                       vans.filter(ele => ele.type.toLowerCase() === typeFilter)
+                       : vans   
+
+  const vansElements = filteredVans.map(ele => (
+       <Link to={`${ele.id}`}>
           <div key={ele.id} className="w-72 overflow-hidden gap-2 hover:scale-105 transition-all duration-300 cursor-pointer">
                <img src={ele.imageUrl} className="w-full h-72 rounded-lg" />
 
@@ -29,8 +36,26 @@ export default function vans(){
   ))
   return(
     <>
-      <div className="p-4 flex flex-col space-y-2 text-center">
+      <div className="p-4 flex flex-col space-y-4 text-center">
         <h1 className="text-3xl font-bold">Explore our vans options</h1>
+        <div>
+          <ul className="flex gap-8 items-center justify-center">
+            <li className="px-4 py-2 border border-secondary bg-primary rounded-lg font-semibold capitalize cursor-pointer"
+                onClick={()=>{setSearchParam({type : "simple"})}} 
+            >simple</li>
+            <li className="px-4 py-2 border border-secondary bg-primary rounded-lg font-semibold capitalize cursor-pointer"
+                onClick={()=>{setSearchParam({type : "rugged"})}} 
+            >rugged</li>
+            <li className="px-4 py-2 border border-secondary bg-primary rounded-lg font-semibold capitalize cursor-pointer"
+                onClick={()=>{setSearchParam({type : "luxury"})}} 
+            >luxury</li>
+            {typeFilter && (
+              <li className="text-text-gray cursor-pointer capitalize"
+                onClick={()=>{setSearchParam("")}} 
+              >clear filter</li>
+            )}
+          </ul>
+        </div>
         <div className="flex flex-wrap gap-6 justify-center bg-primary p-4 rounded-lg">
           {vansElements}
         </div>

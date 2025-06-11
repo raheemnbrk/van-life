@@ -17,7 +17,7 @@ export default function About(){
                      <h1 className='text-2xl font-bold'>Your Destination is waiting</h1>
                      <h1 className='text-2xl font-bold'>Your van is ready</h1>
                      <button className='rounded-lg bg-black text-white px-4 py-2 cursor-pointer mt-8 capitalize'>
-                      <Link to={"/vans"}>explore our vans</Link>
+                      <Link to={"vans"}>explore our vans</Link>
                      </button>
                      
                 </div>
