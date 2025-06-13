@@ -1,19 +1,15 @@
-import { useEffect , useState } from "react";
-import { Link , useSearchParams } from "react-router-dom";
+import { Link , useSearchParams , useLoaderData } from "react-router-dom"
+import { getVans } from "../../api"
+
+export function loader(){
+  return getVans()
+}
 
 export default function Vans(){
+  const vans = useLoaderData()
   const [searchParam , setSearchParam] = useSearchParams()
-  const [vans , setVans] = useState([])
 
   const typeFilter = searchParam.get("type")
-
-  useEffect(()=>{
-    fetch("/api/vans")
-      .then(res => res.json())
-      .then(data => setVans(data.vans))
-      .catch(error => console.log('fetch data: ',error))
-  },[])
-  console.log(searchParam.toString())
 
   const filteredVans = typeFilter ?
                        vans.filter(ele => ele.type.toLowerCase() === typeFilter)
@@ -35,6 +31,7 @@ export default function Vans(){
                 </div>
        </Link>
   ))
+
   return(
     <>
       <div className="p-4 flex flex-col space-y-4 text-center">
@@ -52,7 +49,7 @@ export default function Vans(){
             >luxury</li>
             {typeFilter && (
               <li className="text-text-gray cursor-pointer capitalize"
-                onClick={()=>{setSearchParam("")}} 
+                onClick={()=>{setSearchParam({})}} 
               >clear filter</li>
             )}
           </ul>

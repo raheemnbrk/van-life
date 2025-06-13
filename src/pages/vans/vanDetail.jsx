@@ -41,7 +41,7 @@ export default function VanDetail(){
                     <p>{van.description}</p>
                     <button className="bg-black text-white px-4 py-2 cursor-pointer rounded-lg text-lg font-semibold" >rent this van</button>
                 </div>
-            ) : <h1 className="text-center text-2x font-boldl">loading....</h1>}
+            ) : <h1 className="text-center text-2xl font-bold">loading....</h1>}
           </div>
         </>
     )

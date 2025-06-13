@@ -1,4 +1,5 @@
 import { Routes , Route, Link } from "react-router-dom"
+import { FaRegCircleUser } from "react-icons/fa6";
 
 export default function NavBar(){
     return(
@@ -9,15 +10,18 @@ export default function NavBar(){
 
                 <ul className="flex gap-8 items-center capitalize text-text-gray text-lg">
                     <li className="cursor-pointer hover:text-black hover:border-b-2 transition-all duration-300 ">
-                       <Link to={"/host"}>host</Link>
+                       <Link to={"host"}>host</Link>
                     </li>
 
                     <li className="cursor-pointer hover:text-black hover:border-b-2 transition-all duration-300 ">
-                       <Link to={"/about"}>about</Link>
+                       <Link to={"about"}>about</Link>
                     </li>
 
                     <li className="cursor-pointer hover:text-black hover:border-b-2 transition-all duration-300 ">
-                      <Link to={"/vans"}>vans</Link>
+                      <Link to={"vans"}>vans</Link>
+                    </li>
+                    <li className="cursor-pointer">
+                      <Link to={"/login"}><FaRegCircleUser/></Link>
                     </li>
                 </ul>
             </div>

@@ -4,6 +4,7 @@ import { Link } from "react-router-dom"
 export default function HostVans(){
 
     const [vans , setVans] = useState([])
+    const [loading , setLoading] = useState(false)
 
     useEffect(()=>{
         fetch("/api/host/vans")
