@@ -1,18 +1,14 @@
-import { useParams , Link , Outlet } from "react-router-dom"
-import { useEffect , useState } from "react"
+import { useLoaderData , Link , Outlet } from "react-router-dom"
 import { FaArrowCircleLeft } from "react-icons/fa";
+import { getHostVans, getVans } from "../../api";
+
+export async function loader({params}){
+  return getVans(params.id)
+}
 
 export default function HostVanDetail(){
-    const params = useParams()
-
-    const [van , setVan] = useState(null)
     
-    useEffect(()=>{
-        fetch(`/api/host/vans/${params.id}`)
-           .then(res => res.json())
-           .then(data => setVan(data.vans))
-           .catch(error => console.log('error fetching:',error))
-    },[params.id])
+    const van = useLoaderData()
 
     return(
         <>
