@@ -1,9 +1,9 @@
-import { useLoaderData , Link , Outlet } from "react-router-dom"
+import { useLoaderData , Link , Outlet , NavLink } from "react-router-dom"
 import { FaArrowCircleLeft } from "react-icons/fa";
-import { getHostVans, getVans } from "../../api";
+import { getHostVans} from "../../api";
 
 export async function loader({params}){
-  return getVans(params.id)
+  return getHostVans(params.id)
 }
 
 export default function HostVanDetail(){
@@ -38,15 +38,21 @@ export default function HostVanDetail(){
                         </div>
 
                         <ul className="flex gap-8 capitalize ml-8 text-lg font-semibold text-text-gray">
-                            <Link to={"."}>
-                              <li className="hover:text-black hover:border-b-2 cursor-pointer hover:border-black">details</li>
-                            </Link>
-                            <Link to={"pricing"}>
-                              <li className="hover:text-black hover:border-b-2 cursor-pointer hover:border-black">pricing</li> 
-                            </Link>
-                            <Link to={"photos"}>
-                              <li className="hover:text-black hover:border-b-2 cursor-pointer hover:border-black">photos</li>
-                            </Link>
+                            <li>
+                              <NavLink to={"."} end className={({isActive})=>isActive ? "text-xl font-semibold text-black border-b-2 border-b-black capitalize" : "text-xl font-semibold capitalize text-text-gray"}>
+                                 detail
+                              </NavLink>
+                            </li>
+                            <li>
+                              <NavLink to={"pricing"} className={({isActive})=>isActive ? "text-xl font-semibold text-black border-b-2 border-b-black capitalize" : "text-xl font-semibold capitalize text-text-gray"}>
+                                pricing  
+                              </NavLink>
+                            </li>
+                            <li>
+                              <NavLink to={"photos"} className={({isActive})=>isActive ? "text-xl font-semibold text-black border-b-2 border-b-black capitalize" : "text-xl font-semibold capitalize text-text-gray"}>
+                                photos
+                              </NavLink>
+                            </li>
                         </ul>
                         <Outlet context={{van}} />
                     </div>

@@ -1,13 +1,13 @@
-import { FaRegCopyright } from "react-icons/fa";
+import { LuCopyright } from "react-icons/lu";
 
 export default function Footer(){
-    const date = new Date().getFullYear()
+    const data = new Date().getFullYear()
     return(
         <>
-          <div className="p-4">
-            <div className="p-2 rounded-lg bg-black text-text-gray flex gap-4 text-xl justify-center items-center">
-              <FaRegCopyright/>
-              <h1>{date} copyright</h1>
+          <div className="px-8 py-6 bg-primary">
+            <div className="flex gap-4 items-center justify-center text-white bg-black rounded-xl p-4">
+                <LuCopyright className="text-xl"/>
+                <h1 className="capitalize text-2xl" >{data} copyrights</h1>
             </div>
           </div>
         </>

@@ -1,30 +1,37 @@
-import { Routes , Route, Link } from "react-router-dom"
-import { FaRegCircleUser } from "react-icons/fa6";
+import { NavLink , Link } from "react-router-dom"
+import { HiOutlineUserCircle } from "react-icons/hi2";
 
 export default function NavBar(){
     return(
         <>
-          <div className="px-4 pt-2">
-            <div className="bg-primary px-8 py-8 flex justify-between items-center rounded-t-xl">
-                <h1 className="text-3xl font-bold uppercase cursor-pointer"><Link to={"/"}>#vanlife</Link></h1>
+          <div className="bg-primary px-8 py-6 flex justify-between items-center">
+            <h1 className="text-4xl font-bold uppercase"><Link>#vanlife</Link></h1> 
 
-                <ul className="flex gap-8 items-center capitalize text-text-gray text-lg">
-                    <li className="cursor-pointer hover:text-black hover:border-b-2 transition-all duration-300 ">
-                       <Link to={"host"}>host</Link>
-                    </li>
+            <ul className="flex gap-8 items-center">
+                <li className="text-xl text-text-gray capitalize">
+                    <NavLink to={'host'} className={({isActive})=>isActive ? "text-black border-b-2 border-b-black" : ""} >
+                      host
+                    </NavLink>
+                </li>
 
-                    <li className="cursor-pointer hover:text-black hover:border-b-2 transition-all duration-300 ">
-                       <Link to={"about"}>about</Link>
-                    </li>
+                <li className="text-xl text-text-gray capitalize">
+                    <NavLink to={'about'} className={({isActive})=>isActive ? "text-black border-b-2 border-b-black" : ""}>
+                        about
+                    </NavLink>
+                </li>
 
-                    <li className="cursor-pointer hover:text-black hover:border-b-2 transition-all duration-300 ">
-                      <Link to={"vans"}>vans</Link>
-                    </li>
-                    <li className="cursor-pointer">
-                      <Link to={"/login"}><FaRegCircleUser/></Link>
-                    </li>
-                </ul>
-            </div>
+                <li className="text-xl text-text-gray capitalize">
+                    <NavLink to={'vans'} className={({isActive})=>isActive ? "text-black border-b-2 border-b-black" : ""} >
+                       vans
+                    </NavLink>
+                </li>
+
+                <li className="text-2xl text-text-gray capitalize">
+                    <NavLink to={'login'} className={({isActive})=>isActive ? "text-black border-b-2 border-b-black" : ""}>
+                        <HiOutlineUserCircle/>
+                    </NavLink>
+                </li>
+            </ul>
           </div>
         </>
     )

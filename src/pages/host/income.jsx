@@ -1,7 +1,7 @@
 export default function Income(){
     return(
         <>
-          <p>i am here</p>
+          <h1>Income</h1>
         </>
     )
 }

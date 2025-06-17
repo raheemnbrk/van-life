@@ -1,25 +1,33 @@
-import { Link, Outlet } from "react-router-dom"
+import { Outlet , NavLink } from "react-router-dom"
 
-export default function Hostlayout(){
+export default function HostLayout(){
     return(
         <>
-          <div>
-            <ul className="flex gap-8 text-lg font-semibold text-text-gray capitalize p-4">
-                <li className="hover:text-black hover:border-b-2 hover:border-black cursor-pointer" >
-                    <Link to={"/host"}>dashboard</Link>
-                </li>
-                <li className="hover:text-black hover:border-b-2 hover:border-black cursor-pointer">
-                    <Link to={"income"}>income</Link>
-                </li>
-                <li className="hover:text-black hover:border-b-2 hover:border-black cursor-pointer">
-                    <Link to={"/host/vans"}>vans</Link>
-                </li>
-                <li className="hover:text-black hover:border-b-2 hover:border-black cursor-pointer">
-                    <Link to={"review"}>review</Link>
-                </li>
+          <div className="px-8 py-6 bg-primary" >
+            <ul className="flex gap-16">
+              <li>
+                <NavLink to={'.'} end className={({isActive})=>isActive ? "text-xl font-semibold text-black border-b-2 border-b-black capitalize" : "text-xl font-semibold capitalize text-text-gray"}>
+                    dashboard
+                </NavLink>
+              </li>
+              <li>
+                <NavLink to={'income'} className={({isActive})=>isActive ? "text-xl font-semibold text-black border-b-2 border-b-black capitalize"  : "text-xl font-semibold capitalize text-text-gray"}>
+                    income
+                </NavLink>
+              </li>
+              <li>
+                <NavLink to={'hostVans'} className={({isActive})=>isActive ? "text-xl font-semibold text-black border-b-2 border-b-black capitalize"  : "text-xl font-semibold capitalize text-text-gray"}>
+                  vans
+                </NavLink>
+              </li>
+              <li>
+                <NavLink to={'review'} className={({isActive})=>isActive ? "text-xl font-semibold text-black border-b-2 border-b-black capitalize" : "text-xl font-semibold capitalize text-text-gray"}>
+                    review  
+                </NavLink>
+              </li>
             </ul>
- 
-            <Outlet/> 
+
+             <Outlet/>
           </div>
         </>
     )

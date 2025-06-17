@@ -1,34 +1,30 @@
-import { useLocation , Link , useLoaderData } from "react-router-dom"
+import { useLoaderData , Link } from "react-router-dom"
+import { getVans } from "../../api"
 import { FaArrowCircleLeft } from "react-icons/fa";
-import { getVans } from "../../api";
 
-export async function loader({params}) {
-  console.log(params)
-  return getVans(params.id)
+export async function loader({params}){
+   return getVans(params.id)
 }
 
 export default function VanDetail(){
-    const location = useLocation()
     const van = useLoaderData()
-
-    const search = location.state?.search||""
-    const type = location.state?.type||"all"
-
+    console.log(van)
     return(
         <>
-          <div className="p-4 flex flex-col space-y-4 ">
-            <Link to={`..${search}`} relative="path" >
-              <div className="flex gap-2 text-text-gray items-center">
-                <FaArrowCircleLeft/>
-                <p>back to {type} vans</p>
-              </div>
-            </Link>
-                <div className="bg-primary p-4 space-y-4">
-                    <img src={van.imageUrl} className="w-[300px] rounded-lg" />
-                    <p className={`px-4 py-2 rounded-lg text-white w-fit mt-2
-                       ${van.type ==="simple" ? "bg-third" : van.type === "rugged" ? "bg-green-900" : "bg-black"}`}>
-                        {van.type}
-                    </p>
+          <div className="px-8 py-6 bg-primary space-y-4">
+            <Link to={'..'} relative="path">
+                <div className="text-xl flex items-center gap-4 text-text-gray">
+                   <FaArrowCircleLeft/>
+                   <p>back to all vans</p>
+                </div>
+             </Link>
+
+             <div className="bg-primary p-4 space-y-4">
+                <img src={van.imageUrl} className="w-[300px] rounded-lg" />
+                <p className={`px-4 py-2 rounded-lg text-white w-fit mt-2
+                    ${van.type ==="simple" ? "bg-third" : van.type === "rugged" ? "bg-green-900" : "bg-black"}`}>
+                    {van.type}
+                </p>
                     <h1 className="text-3xl font-bold">{van.name}</h1> 
                     <h1 className="text-xl font-semibold">${van.price}/day</h1>
                     <p>{van.description}</p>
