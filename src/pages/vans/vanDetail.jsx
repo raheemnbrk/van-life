@@ -1,4 +1,4 @@
-import { useLoaderData , Link } from "react-router-dom"
+import { useLoaderData , Link , useLocation } from "react-router-dom"
 import { getVans } from "../../api"
 import { FaArrowCircleLeft } from "react-icons/fa";
 
@@ -8,14 +8,17 @@ export async function loader({params}){
 
 export default function VanDetail(){
     const van = useLoaderData()
-    console.log(van)
+    const location = useLocation()
+
+    const search = location.state?.search || ""
+    const type = location.state?.type || "all"
     return(
         <>
           <div className="px-8 py-6 bg-primary space-y-4">
-            <Link to={'..'} relative="path">
+            <Link to={`..?${search}`} relative="path">
                 <div className="text-xl flex items-center gap-4 text-text-gray">
                    <FaArrowCircleLeft/>
-                   <p>back to all vans</p>
+                   <p>back to {type} vans</p>
                 </div>
              </Link>
 

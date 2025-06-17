@@ -1,7 +1,6 @@
-import { useLoaderData , Link , useSearchParams , NavLink} from "react-router-dom"
+import { useLoaderData , Link , useSearchParams} from "react-router-dom"
 import { auth } from "../../auth"
 import { getVans } from "../../api"
-
 
 export async function loader(){
     await auth()
@@ -18,7 +17,7 @@ export default function Vans(){
                        :vans
     
     const vansElements = filtredVans.map((ele)=>(
-        <Link to={`${ele.id}`} key={ele.id}>
+        <Link to={`${ele.id}`} key={ele.id} state={{search : searchParam.toString() ,type : typeFilter }}>
            <div key={ele.id} className="w-72 overflow-hidden gap-2 hover:scale-105 transition-all duration-300 cursor-pointer">
               <img src={ele.imageUrl} className="w-full h-72 rounded-lg" />
 
@@ -39,30 +38,18 @@ export default function Vans(){
              <h1 className="text-3xl font-bold text-center">Explore our vans options</h1>
              <div className="p-8 text-xl capitalize">
                 <ul className="flex gap-16 justify-center">
-                    <li onClick={()=>{setSearchParam("simple")}}>
-                        <NavLink className={({isActive})=> isActive ?
-                           "font-semibold rounded-lg bg-third px-4 py-2 text-white" : "font-semibold rounded-lg bg-third"
-                        } >
-                            simple
-                        </NavLink>
-                    </li>
-                    <li onClick={()=>{setSearchParam("rugged")}}>
-                        <NavLink className={({isActive})=> isActive ?
-                           "font-semibold rounded-lg bg-green-900 text-white px-4 py-2" : "font-semibold rounded-lg bg-third"
-                        } >
-                            rugged
-                        </NavLink>
-                    </li>
-                    <li onClick={()=>{setSearchParam("luxury")}}>
-                        <NavLink className={({isActive})=> isActive ?
-                           "font-semibold rounded-lg bg-black text-white px-4 py-2" : "font-semibold rounded-lg bg-third"
-                        } >
-                            luxury
-                        </NavLink>
-                    </li>
+                    <li
+                       onClick={()=>{setSearchParam({type : "simple"})}} 
+                       className={`${typeFilter === "simple" ?"bg-third text-white":"border-2 border-third"} font-semibold rounded-lg px-4 py-2 cursor-pointer transition-all duration-300`}>simple</li>
+                    <li
+                       onClick={()=>{setSearchParam({type : "rugged"})}} 
+                       className={`${typeFilter === "rugged" ?"bg-green-900 text-white" :"border-2 border-third"} font-semibold rounded-lg px-4 py-2 cursor-pointer transition-all duration-300`}>rugged</li>
+                    <li
+                       onClick={()=>{setSearchParam({type : "luxury"})}} 
+                       className={`${typeFilter === "luxury" ?"bg-black text-white" :"border-2 border-third"} font-semibold rounded-lg px-4 py-2 cursor-pointer transition-all duration-300`}>luxury</li>
                     {typeFilter && (
-                        <li onClick={()=>{setSearchParam("")}}>
-                           luxury
+                        <li className="text-text-gray cursor-pointer" onClick={()=>{setSearchParam("")}}>
+                           clear filter
                         </li>
                     )}
                 </ul>
