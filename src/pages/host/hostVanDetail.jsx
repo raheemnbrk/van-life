@@ -2,7 +2,7 @@ import { useLoaderData , Link , Outlet , NavLink } from "react-router-dom"
 import { FaArrowCircleLeft } from "react-icons/fa";
 import { getHostVans} from "../../api";
 
-export async function loader({params}){
+export async function loader({params , request}){
   return getHostVans(params.id)
 }
 

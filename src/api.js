@@ -30,3 +30,25 @@ export async function getHostVans(id){
     const data = await res.json()
     return data
 }
+
+export async function getUser(email, password ){
+  const url = `http://localhost:3000/users?email=${email}`
+  const res = await fetch(url)
+  const data = await res.json()
+
+  if(data.length === 0){
+    throw {
+      message: "Invalid email or password",
+      statusText: "Unauthorized",
+      status: 401
+    }
+  }
+
+  const user = data[0]
+
+  if(user.password !== password){
+    throw new Error("incorrect password.")
+  }
+
+  return user
+}

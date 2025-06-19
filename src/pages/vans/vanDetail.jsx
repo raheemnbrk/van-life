@@ -16,10 +16,10 @@ export default function VanDetail(){
         <>
           <div className="px-8 py-6 bg-primary space-y-4">
             <Link to={`..?${search}`} relative="path">
-                <div className="text-xl flex items-center gap-4 text-text-gray">
-                   <FaArrowCircleLeft/>
-                   <p>back to {type} vans</p>
-                </div>
+                <div className="flex gap-2 text-text-gray items-center">
+                <FaArrowCircleLeft/>
+                <p>back to all vans</p>
+              </div>
              </Link>
 
              <div className="bg-primary p-4 space-y-4">

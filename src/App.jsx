@@ -3,7 +3,7 @@ import { createBrowserRouter, createRoutesFromElements, Route, RouterProvider } 
 import LayOut from "./components/layOut"
 import Home from "./pages/home"
 import About from "./pages/about"
-import LogIn from "./pages/logIn"
+import LogIn  , {action as loginActoin , loader as logInLoader} from "./pages/logIn"
 import Vans, { loader as vanLoader } from "./pages/vans/vans"
 import VanDetail , {loader as vanDetailLoader} from "./pages/vans/vanDetail"
 import Error from "./pages/error"
@@ -18,20 +18,22 @@ import HostVanPicture from "./pages/host/hostVanPictures"
 import HostVanInfo from "./pages/host/hostVanInfo"
 import NotFound from "./pages/notFound"
 
+import { auth } from "./auth"
+
 export default function App() {
   const router = createBrowserRouter(
     createRoutesFromElements(
       <Route element={<LayOut />} errorElement={<Error />}>
         <Route index element={<Home />} />
         <Route path="about" element={<About />} />
-        <Route path="login" element={<LogIn />} />
+        <Route path="login" element={<LogIn />} action={loginActoin} loader={logInLoader}/>
         <Route path="vans" element={<Vans />} loader={vanLoader}/>
         <Route path="vans/:id" element={<VanDetail/>} loader={vanDetailLoader} />
 
         <Route path="host" element={<HostLayout/>}>
-           <Route index element={<Dashboard/>}/>
-           <Route path="income" element={<Income/>} />
-           <Route path="review" element={<Review/>}/>
+           <Route index element={<Dashboard/>}      loader={async({request})=>await auth(request)}/>
+           <Route path="income" element={<Income/>} loader={async({request})=>await auth(request)}/>
+           <Route path="review" element={<Review/>} loader={async({request})=>await auth(request)}/>
            <Route path="hostVans" element={<HostVans/>} loader={hostVansLoader} />
            <Route path="hostVans/:id" element={<HostVanDetail/>} loader={hostVanDetailLoader}>
             <Route index element={<HostVanInfo/>}/>

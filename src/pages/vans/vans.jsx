@@ -1,9 +1,7 @@
 import { useLoaderData , Link , useSearchParams} from "react-router-dom"
-import { auth } from "../../auth"
 import { getVans } from "../../api"
 
 export async function loader(){
-    await auth()
     return getVans()
 }
 
@@ -40,13 +38,13 @@ export default function Vans(){
                 <ul className="flex gap-16 justify-center">
                     <li
                        onClick={()=>{setSearchParam({type : "simple"})}} 
-                       className={`${typeFilter === "simple" ?"bg-third text-white":"border-2 border-third"} font-semibold rounded-lg px-4 py-2 cursor-pointer transition-all duration-300`}>simple</li>
+                       className={`${typeFilter === "simple" ?"bg-third text-white":"border-2 border-orange-300"} font-semibold rounded-lg px-4 py-2 cursor-pointer transition-all duration-300`}>simple</li>
                     <li
                        onClick={()=>{setSearchParam({type : "rugged"})}} 
-                       className={`${typeFilter === "rugged" ?"bg-green-900 text-white" :"border-2 border-third"} font-semibold rounded-lg px-4 py-2 cursor-pointer transition-all duration-300`}>rugged</li>
+                       className={`${typeFilter === "rugged" ?"bg-green-900 text-white" :"border-2 border-orange-300"} font-semibold rounded-lg px-4 py-2 cursor-pointer transition-all duration-300`}>rugged</li>
                     <li
                        onClick={()=>{setSearchParam({type : "luxury"})}} 
-                       className={`${typeFilter === "luxury" ?"bg-black text-white" :"border-2 border-third"} font-semibold rounded-lg px-4 py-2 cursor-pointer transition-all duration-300`}>luxury</li>
+                       className={`${typeFilter === "luxury" ?"bg-black text-white" :"border-2 border-orange-300"} font-semibold rounded-lg px-4 py-2 cursor-pointer transition-all duration-300`}>luxury</li>
                     {typeFilter && (
                         <li className="text-text-gray cursor-pointer" onClick={()=>{setSearchParam("")}}>
                            clear filter
