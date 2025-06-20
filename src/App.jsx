@@ -27,13 +27,13 @@ export default function App() {
         <Route index element={<Home />} />
         <Route path="about" element={<About />} />
         <Route path="login" element={<LogIn />} action={loginActoin} loader={logInLoader}/>
-        <Route path="vans" element={<Vans />} loader={vanLoader}/>
+        <Route path="vans" element={<Vans />} loader={vanLoader} />
         <Route path="vans/:id" element={<VanDetail/>} loader={vanDetailLoader} />
 
         <Route path="host" element={<HostLayout/>}>
-           <Route index element={<Dashboard/>}      loader={async({request})=>await auth(request)}/>
-           <Route path="income" element={<Income/>} loader={async({request})=>await auth(request)}/>
-           <Route path="review" element={<Review/>} loader={async({request})=>await auth(request)}/>
+           <Route index element={<Dashboard/>}     />
+           <Route path="income" element={<Income/>}/>
+           <Route path="review" element={<Review/>}/>
            <Route path="hostVans" element={<HostVans/>} loader={hostVansLoader} />
            <Route path="hostVans/:id" element={<HostVanDetail/>} loader={hostVanDetailLoader}>
             <Route index element={<HostVanInfo/>}/>

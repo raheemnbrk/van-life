@@ -5,6 +5,7 @@
   --color-text-gray : #70675e ;
   --color-secondary : #e6742d ;
   --color-third     : #d3a36c ;
+  --color-fourth : #fee7ca ;
 }
 
 @layer utilities{
