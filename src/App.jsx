@@ -8,7 +8,7 @@ import Vans, { loader as vanLoader } from "./pages/vans/vans"
 import VanDetail , {loader as vanDetailLoader} from "./pages/vans/vanDetail"
 import Error from "./pages/error"
 import HostLayout from "./components/hostLayout"
-import Dashboard from "./pages/host/dashBoard"
+import Dashboard , {loader as dashBoardLoader} from "./pages/host/dashBoard"
 import Income from "./pages/host/income"
 import Review from "./pages/host/review"
 import HostVans , {loader as hostVansLoader} from "./pages/host/hostVans"
@@ -31,7 +31,7 @@ export default function App() {
         <Route path="vans/:id" element={<VanDetail/>} loader={vanDetailLoader} />
 
         <Route path="host" element={<HostLayout/>}>
-           <Route index element={<Dashboard/>}     />
+           <Route index element={<Dashboard/>} loader={dashBoardLoader}/>
            <Route path="income" element={<Income/>}/>
            <Route path="review" element={<Review/>}/>
            <Route path="hostVans" element={<HostVans/>} loader={hostVansLoader} />
